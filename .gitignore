@@ -1,0 +1,28 @@
+# Composer関連
+/vendor/
+/composer.lock        # 個人開発なら無視でも可
+
+# PHPの実行キャッシュ（OPcacheなどは通常不要）
+*.cache
+
+# ビルド成果物
+/cashbook.phar
+/build/
+
+# OS系
+.DS_Store
+Thumbs.db
+
+# IDE / エディタ
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ログ / 一時ファイル
+*.log
+tmp/
+/data/input/*
+/data/output/*
+!/data/input/sample_00.csv
+!/data/output/.gitkeep
