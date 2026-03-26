@@ -22,3 +22,7 @@ Thumbs.db
 # ログ / 一時ファイル
 *.log
 tmp/
+/data/input/*
+/data/output/*
+!/data/input/sample_00.csv
+!/data/output/.gitkeep
