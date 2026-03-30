@@ -1,10 +1,11 @@
 <?php
 namespace App\io;
 
+use App\io\exceptions\NoLoadedTransactionException;
+use App\io\exceptions\FileNotOpenedException;
 use App\model\CsvTransaction;
 use App\model\CsvTransactionFactory;
 use App\model\exceptions\InvalidTransactionException;
-use App\io\exceptions\NoLoadedTransactionException;
 
 /**
  * 取引CSVファイルを読み込むクラス
@@ -17,9 +18,9 @@ class CsvLoader {
 	 */
 	public function load(string $path):array {
 
+		// 指定されたファイルの存在確認：存在しない場合は例外を発生
+		if (!file_exists($path)) throw new FileNotOpenedException("ファイルを開けません：{$path}");
 		$input = fopen($path, "r");
-		// 指定されたファイルが存在しない場合
-		if ($input === false) throw new \RuntimeException("ファイルを開けません：{$path}");
 
 		try {
 			$transactions = [];
@@ -34,7 +35,7 @@ class CsvLoader {
 			}
 
 			if (count($transactions) === 0) {
-				throw new NoLoadedTransactionException("取引が読み込まれていません：{$input}");
+				throw new NoLoadedTransactionException("取引が読み込まれていません：{$path}");
 			}
 
 			return $transactions;
