@@ -22,7 +22,8 @@ class CsvTransactionFactory {
 			throw new InvalidTransactionException("取引日付が不正です");
 		}
 		// 金額の形式チェック
-		if (!is_numeric(str_replace(',', '', $cols[2]))) {
+		$isNumericOrEmpty = (empty($cols[2]) || is_numeric(str_replace(',', '', $cols[2])));
+		if (!$isNumericOrEmpty) {
 			throw new InvalidTransactionException("金額が不正です");
 		}
 

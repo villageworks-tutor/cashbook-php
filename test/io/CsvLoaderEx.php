@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\io;
 
 use App\io\CsvLoader;
 

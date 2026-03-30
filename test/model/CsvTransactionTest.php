@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\model;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;

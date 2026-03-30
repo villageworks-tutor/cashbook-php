@@ -1,13 +1,13 @@
 <?php
-namespace App\io\exceptions;
+namespace App\service\exceptions;
 
 use Exception;
 use Throwable;
 
 /**
- * CsvLoaderで発生する取引未読込例外（独自例外）
+ * CsvServiceクラスで発生する取引未読込例外（独自例外）
  */
-class NoLoadedTransactionsException extends Exception {
+class CsvServiceException extends Exception {
 
   /**
    * コンストラクタ

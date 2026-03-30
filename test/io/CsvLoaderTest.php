@@ -1,11 +1,12 @@
 <?php
-namespace Tests;
+namespace Tests\io;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
 use App\io\CsvLoader;
+use App\io\exceptions\FileNotOpenedException;
 use App\model\CsvTransaction;
 
 use DateTimeImmutable;
@@ -18,10 +19,26 @@ class CsvLoaderTest extends TestCase {
 		$this->sut = new CsvLoader();
 	}
 
+	/**
+	 * 読込ファイルを読み込めなかった場合に発生する例外のテストケース
+	 */
+	#[Test]
+	function testThrowFileNotFoundException_onCsvLoader():void {
+		// setup
+		$inputPath = __DIR__."/not/exists/csv_test_dummy.csv";
+		$this->expectException(FileNotOpenedException::class);
+		$this->expectExceptionMessage("ファイルを開けません：{$inputPath}");
+		// execute & verify
+		$this->sut->load($inputPath);
+	}
+
+	/**
+	 * CsvLoader::load(string)メソッドのテストケース
+	 */
 	#[Test]
 	function testLoad():void {
 		// setup
-		$target = dirname(__DIR__) . "/data/input/sample_00.csv";
+		$target = __DIR__ . "/../../data/input/sample_00.csv";
 		$expectedList = [];
 		$expectedList[] = new CsvTransaction(20260130000020, new DateTimeImmutable("2026-01-30"),110,0,2364265,"振込手数料");
 		$expectedList[] = new CsvTransaction(20260130000010, new DateTimeImmutable("2026-01-30"),4000,0,2364375,"ネツト　ムラ　フミヒコ");

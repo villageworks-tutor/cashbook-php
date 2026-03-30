@@ -1,12 +1,15 @@
 <?php
-namespace Tests;
+namespace Tests\io;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 
-use Tests\CsvLoaderEx;
+use Tests\io\CsvLoaderEx;
 
+/**
+ * CsvLoaderのprotectedメソッドテスト用テストクラス
+ */
 class CsvLoaderExTest extends TestCase {
 	
 	/** テスト対象クラス： */
